@@ -10,7 +10,7 @@ In these projects, you'll need to fetch data and parse a dataset, then use D3 to
 
 ## Tools and Tech
 
-## Approach and Methodology
+• Terminal • Git • GitHub • VSC • HTML • CSS • JS • D3
 
 ## Live Preview
 
