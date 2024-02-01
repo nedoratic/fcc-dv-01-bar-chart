@@ -26,8 +26,6 @@ let drawBarChart = () => {
 	svg.attr("height", height);
 };
 
-let drawAxes = () => {};
-
 let drawScales = () => {
 	xAxis = d3
 		.scaleLinear()
@@ -52,6 +50,23 @@ let drawScales = () => {
 		.range([height - padding, padding]);
 };
 
+let drawAxes = () => {
+	let xAxis = d3.axisBottom(xScale);
+	let yAxis = d3.axisLeft(yScale);
+
+	svg
+		.append("g")
+		.call(xAxis)
+		.attr("id", "x-axis")
+		.attr("transform", "translate(0, " + (height - padding) + ")");
+
+	svg
+		.append("g")
+		.call(yAxis)
+		.attr("id", "y-axis")
+		.attr("transform", "translate(" + padding + ", 0)");
+};
+
 let drawBars = () => {};
 
 // Fetching JSON data
@@ -61,8 +76,8 @@ req.onload = () => {
 	values = data.data;
 	console.log(values);
 	drawBarChart();
-	drawAxes();
 	drawScales();
+	drawAxes();
 	drawBars();
 };
 req.send();
