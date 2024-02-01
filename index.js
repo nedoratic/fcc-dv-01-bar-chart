@@ -15,7 +15,7 @@ let xScale;
 let yScale;
 let width = 1000;
 let height = 600;
-let margin = 50;
+let padding = 50;
 
 // SVG
 let svg = d3.select("svg");
@@ -28,7 +28,29 @@ let drawBarChart = () => {
 
 let drawAxes = () => {};
 
-let drawScales = () => {};
+let drawScales = () => {
+	xAxis = d3
+		.scaleLinear()
+		.domain([0, d3.max(values, (gdp) => gdp[1])])
+		.range([0, height - 2 * padding]);
+
+	yAxis = d3
+		.scaleLinear()
+		.domain([0, values.length - 1])
+		.range([padding, width - padding]);
+
+	let datesArray = values.map((date) => new Date(date[0]));
+
+	xScale = d3
+		.scaleTime()
+		.domain([d3.min(datesArray), d3.max(datesArray)])
+		.range([padding, width - padding]);
+
+	yScale = d3
+		.scaleLinear()
+		.domain([0, d3.max(values, (item) => item[1])])
+		.range([height - padding, padding]);
+};
 
 let drawBars = () => {};
 
